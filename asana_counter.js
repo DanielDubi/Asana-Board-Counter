@@ -38,11 +38,11 @@ function checkLaunchpad(title, column) {
         var hasSize = isTeeShirtSizeInName(task_names[i].innerHTML);
         if (!hasSize)
         {
-            tasks_missing_size.push(task_names[i].innerHTML);
+            tasks_missing_size.push("[" +i + "] " + task_names[i].innerHTML);
         }
     }
     if ( tasks_missing_size.length != 0) {
-        lunchpad_status += "\nThe following tasks have not tee-shirt size:\n";
+        lunchpad_status += "\nThe following tasks have not T-shirt size:\n";
     }
     for (var j = 0; j < tasks_missing_size.length; j++) {
         lunchpad_status += "  *  " + tasks_missing_size[j] + "\n"
