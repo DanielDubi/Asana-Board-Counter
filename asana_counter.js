@@ -1,14 +1,13 @@
 // ==UserScript==
 // @name         Count Asana
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.1
 // @description  Count asana board columns
 // @author       You
 // @match        https://app.asana.com/0/*/board
 // @grant        none
 // ==/UserScript==
 
-var checkButtonAdded = false;
 
 function isTeeShirtSizeInName(name) {
     var tee_shirt_size = name.match(/^\[[SML]\]+/g);
@@ -100,16 +99,16 @@ function addCount(element, number) {
 
 function addCheckButton() {
     'use strict';
-    if (checkButtonAdded) {
+    var boardHeader = document.getElementsByClassName("BoardHeader Board-header");
+    var existing_btns = document.getElementsByTagName("BUTTON");
+    if (existing_btns.length !== 0) {
         return;
     }
-    var boardHeader = document.getElementsByClassName("BoardHeader Board-header");
     var btn = document.createElement("BUTTON");
     var text = document.createTextNode("Check Board");
     btn.appendChild(text);
     btn.onclick = function() { checkBoard(); }
     boardHeader[0].appendChild(btn);
-    checkButtonAdded = true;
 }
 
 setInterval(function() {
